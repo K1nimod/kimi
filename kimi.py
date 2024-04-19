@@ -1,7 +1,3 @@
-f = open("kimi.csv", "r", encoding="utf-8")
-f.readline
-
-
 class Kimi:
     def __init__(self,Dat,NagyD,Hely,BefKor,Pont,Kon,Cel,KorH,Hiba):
         self.Dat = Dat
@@ -18,38 +14,34 @@ class Kimi:
         return(f"{self.Dat} {self.NagyD} {self.Hely} {self.BefKor} {self.Pont} {self.Kon} {self.Cel} {self.KorH} {self.Hiba}")
 
 
-db = -1 
+f = open('kimi.csv', 'rt', encoding='UTF-8')
+f.readline()
+
 lista = []
-
+db = 0
 for sor in f:
-    db += 1
+    db += 1 
+    sor = sor.strip().split(';')
+    lista.append(Kimi(sor[0], sor[1], sor[2], sor[3], sor[4], sor[5], sor[6], sor[7], sor[8]))
 
-print("3.feladat:",db)
+print('3. feladat:', db)
 
-for sor in f:
-    sor = sor.strip().split(";")
-    lista.append(Kimi(sor[0],sor[1],sor[2],sor[3],sor[4],sor[5],sor[6],sor[7],sor[8]))
-
-print("4.feladat: Magyar Nagydíj helyezései")
-
+print('4. feladat: Magyar Nagydíj helyezései')
 for elem in lista:
     if elem.NagyD == 'Magyar Nagydíj':
         if elem.Cel == 'I':
-            print(f"{elem.Dat} {elem.Hely} hely")
-    
+            print(f'{elem.Dat}: {elem.Hely} helyezés')
 
-print("5.feladat: Hibastatisztika")
+print('5. feladat: Hibastatisztika')
 
 hib = {}
 
-for elemb in lista:
-    if elemb.Hiba not in elemb.keys():
-        hib[elemb.Hiba] = 1
+for hiba in lista:
+    if hiba.Hiba not in hib.keys():
+        hib[hiba.Hiba] = 1
     else:
-        hib[elemb.Hiba] += 1
-
+        hib[hiba.Hiba] += 1
 
 for k, v in hib.items():
     if v > 1:
-        print(f"{k}:{v}")
-
+        print(f'{k}: {v}')
