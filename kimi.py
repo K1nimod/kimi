@@ -1,4 +1,4 @@
-f = open("kimi.csv" "r" encoding="utf-8")
+f = open("kimi.csv", "r", encoding="utf-8")
 f.readline
 
 
@@ -18,3 +18,10 @@ class Kimi:
         return f"{self.Dat} {self.NagyD} {self.Hely} {self.BefKor} {self.Pont} {self.Kon} {self.Cel} {self.KorH} {self.Hiba}"
 
 
+db = 0 
+lista = []
+
+for sor in lista:
+    db += 1
+
+print("3.feladat: ", db)
